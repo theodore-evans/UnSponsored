@@ -14,12 +14,15 @@ function hideSponsoredElements() {
   // Hides text ads that appear at the top and bottom of search results
   let textAdElements = document.querySelectorAll('[data-text-ad="1"]');
   textAdElements.forEach(element => {
+    // Store computed display value before hiding
+    element.dataset.originalDisplay = window.getComputedStyle(element).display;
     element.style.display = 'none';
   });
 
   // Hides "Sponsored" links that appear in search results
   let isAdElements = document.querySelectorAll('[data-is-ad="1"]');
   isAdElements.forEach(element => {
+    element.dataset.originalDisplay = window.getComputedStyle(element).display;
     element.style.display = 'none';
   });
 
@@ -27,12 +30,14 @@ function hideSponsoredElements() {
   // Hides sponsored search results marked with data-ad-container
   let startpageAdContainers = document.querySelectorAll('[data-ad-container="1"]');
   startpageAdContainers.forEach(element => {
+    element.dataset.originalDisplay = window.getComputedStyle(element).display;
     element.style.display = 'none';
   });
 
-  // Hides sponsored content containers in top, bottom and sidebar areas
-  let adDivs = document.querySelectorAll('#gcsa-top, #gcsa-bottom, #gcsa-aylf-sidebar');
+  // Hides sponsored content containers in top and bottom areas
+  let adDivs = document.querySelectorAll('#gcsa-top, #gcsa-bottom');
   adDivs.forEach(element => {
+    element.dataset.originalDisplay = window.getComputedStyle(element).display;
     element.style.display = 'none';
   });
 
@@ -54,23 +59,23 @@ function showSponsoredElements() {
   // Google ad selectors
   let textAdElements = document.querySelectorAll('[data-text-ad="1"]');
   textAdElements.forEach(element => {
-    element.style.display = 'block';
+    element.style.display = element.dataset.originalDisplay || '';
   });
 
   let isAdElements = document.querySelectorAll('[data-is-ad="1"]');
   isAdElements.forEach(element => {
-    element.style.display = 'block';
+    element.style.display = element.dataset.originalDisplay || '';
   });
 
   // Startpage ad selectors
   let startpageAdContainers = document.querySelectorAll('[data-ad-container="1"]');
   startpageAdContainers.forEach(element => {
-    element.style.display = 'block';
+    element.style.display = element.dataset.originalDisplay || '';
   });
 
-  let adDivs = document.querySelectorAll('#gcsa-top, #gcsa-bottom, #gcsa-aylf-sidebar');
+  let adDivs = document.querySelectorAll('#gcsa-top, #gcsa-bottom');
   adDivs.forEach(element => {
-    element.style.display = 'block';
+    element.style.display = element.dataset.originalDisplay || '';
   });
 
   console.log('[Google] Number of [data-text-ad="1"] elements shown:', textAdElements.length);
