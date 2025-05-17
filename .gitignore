@@ -1,3 +1,9 @@
 test.js
 test.json
 node_modules/
+
+# sample html files
+examples/
+
+# packaged distributions
+*.zip
