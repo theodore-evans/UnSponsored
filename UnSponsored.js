@@ -35,7 +35,7 @@ function hideSponsoredElements() {
   });
 
   // Hides sponsored content containers in top and bottom areas
-  let adDivs = document.querySelectorAll('#gcsa-top, #gcsa-bottom');
+  let adDivs = document.querySelectorAll('#gcsa-top, #gcsa-bottom, #gcsa-aylf-sidebar');
   adDivs.forEach(element => {
     element.dataset.originalDisplay = window.getComputedStyle(element).display;
     element.style.display = 'none';
