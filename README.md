@@ -6,20 +6,20 @@
 
 ## Description
 
-The UnSponsored Chrome Extension removes sponsored search results from Google Search.
+The UnSponsored Chrome Extension removes sponsored search results from Google Search and Startpage.
 
 ## Installation
 
 1. Download the extension files from the [GitHub repository](https://github.com/dumbross/UnSponsored).
 2. Unzip the downloaded folder.
-3. Open Google Chrome.
+3. Open Google Chrome / Brave.
 4. Go to `chrome://extensions/`.
 5. Enable **Developer mode** in the top right corner.
 6. Click on **Load unpacked** and select the unzipped folder.
 
 ## Usage
 
-Once installed, perform a Google Search, and sponsored results will be hidden automatically. Open the Dev menu and check console to see how many links where hidden.
+Once installed, perform a search in Google Search or Startpage, and sponsored results will be hidden automatically. Open the Dev menu and check console to see how many links where hidden.
 
 ## Contributing
 
