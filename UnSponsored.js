@@ -1,4 +1,4 @@
-chrome.storage.sync.get('enabled', function(data) {
+chrome.storage.sync.get('enabled', function (data) {
   var isEnabled = data.enabled;
   if (isEnabled === undefined) {
     isEnabled = true; // Default to true if the value is not set
@@ -22,11 +22,19 @@ function hideSponsoredElements() {
     element.style.display = 'none';
   });
 
+
+  // Select elements with data-ad-container="1" (startpage sponsored ads)
+  let adContainerElements = document.querySelectorAll('[data-ad-container="1"]');
+  isAdElements.forEach(element => {
+    element.style.display = 'none';
+  });
+
   console.log('Number of text ad elements hidden:', textAdElements.length);
   console.log('Number of is-ad elements hidden:', isAdElements.length);
+  console.log('Number of ad-container elements hidden:', adContainerElements.length);
 }
 
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.enabled) {
     hideSponsoredElements();
   } else {
@@ -47,6 +55,13 @@ function showSponsoredElements() {
     element.style.display = 'block';
   });
 
+  // Select elements with data-ad-container="1" (startpage sponsored ads)
+  let adContainerElements = document.querySelectorAll('[data-ad-container="1"]');
+  isAdElements.forEach(element => {
+    element.style.display = 'block';
+  });
+
   console.log('Number of text ad elements shown:', textAdElements.length);
   console.log('Number of is-ad elements shown:', isAdElements.length);
+  console.log('Number of ad-container elements shown:', adContainerElements.length);
 }
