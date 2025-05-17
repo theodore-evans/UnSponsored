@@ -48,6 +48,10 @@ to watch my people suffer.
 
 ## Version History
 
+### Version 1.7 (May 17, 2025)
+
+- Added support for blocking sponsored content on Startpage.com
+
 ### Version 1.6 (March 05, 2025)
 
 - Added new flag to identify and hide new type of sponsored result - mapview shortlist result. 

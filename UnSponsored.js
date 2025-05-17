@@ -10,28 +10,36 @@ chrome.storage.sync.get('enabled', function (data) {
 });
 
 function hideSponsoredElements() {
-  // Select elements with data-text-ad="1"
+  // Google ad selectors
+  // Hides text ads that appear at the top and bottom of search results
   let textAdElements = document.querySelectorAll('[data-text-ad="1"]');
   textAdElements.forEach(element => {
     element.style.display = 'none';
   });
 
-  // Select elements with data-is-ad="1"    <---------------------------This attr will find sponsored links in mapview short list
+  // Hides "Sponsored" links that appear in search results
   let isAdElements = document.querySelectorAll('[data-is-ad="1"]');
   isAdElements.forEach(element => {
     element.style.display = 'none';
   });
 
-
-  // Select elements with data-ad-container="1" (startpage sponsored ads)
-  let adContainerElements = document.querySelectorAll('[data-ad-container="1"]');
-  isAdElements.forEach(element => {
+  // Startpage ad selectors
+  // Hides sponsored search results marked with data-ad-container
+  let startpageAdContainers = document.querySelectorAll('[data-ad-container="1"]');
+  startpageAdContainers.forEach(element => {
     element.style.display = 'none';
   });
 
-  console.log('Number of text ad elements hidden:', textAdElements.length);
-  console.log('Number of is-ad elements hidden:', isAdElements.length);
-  console.log('Number of ad-container elements hidden:', adContainerElements.length);
+  // Hides sponsored content containers in top, bottom and sidebar areas
+  let adDivs = document.querySelectorAll('#gcsa-top, #gcsa-bottom, #gcsa-aylf-sidebar');
+  adDivs.forEach(element => {
+    element.style.display = 'none';
+  });
+
+  console.log('[Google] Number of [data-text-ad="1"] elements hidden:', textAdElements.length);
+  console.log('[Google] Number of [data-is-ad="1"] elements hidden:', isAdElements.length);
+  console.log('[Startpage] Number of [data-ad-container="1"] elements hidden:', startpageAdContainers.length);
+  console.log('[Startpage] Number of gcsa-* container elements hidden:', adDivs.length);
 }
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
@@ -43,25 +51,30 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 });
 
 function showSponsoredElements() {
-  // Select elements with data-text-ad="1"
+  // Google ad selectors
   let textAdElements = document.querySelectorAll('[data-text-ad="1"]');
   textAdElements.forEach(element => {
-    element.style.display = 'block'; // Assuming "block" is the default display for these elements
+    element.style.display = 'block';
   });
 
-  // Select elements with data-is-ad="1"
   let isAdElements = document.querySelectorAll('[data-is-ad="1"]');
   isAdElements.forEach(element => {
     element.style.display = 'block';
   });
 
-  // Select elements with data-ad-container="1" (startpage sponsored ads)
-  let adContainerElements = document.querySelectorAll('[data-ad-container="1"]');
-  isAdElements.forEach(element => {
+  // Startpage ad selectors
+  let startpageAdContainers = document.querySelectorAll('[data-ad-container="1"]');
+  startpageAdContainers.forEach(element => {
     element.style.display = 'block';
   });
 
-  console.log('Number of text ad elements shown:', textAdElements.length);
-  console.log('Number of is-ad elements shown:', isAdElements.length);
-  console.log('Number of ad-container elements shown:', adContainerElements.length);
+  let adDivs = document.querySelectorAll('#gcsa-top, #gcsa-bottom, #gcsa-aylf-sidebar');
+  adDivs.forEach(element => {
+    element.style.display = 'block';
+  });
+
+  console.log('[Google] Number of [data-text-ad="1"] elements shown:', textAdElements.length);
+  console.log('[Google] Number of [data-is-ad="1"] elements shown:', isAdElements.length);
+  console.log('[Startpage] Number of [data-ad-container="1"] elements shown:', startpageAdContainers.length);
+  console.log('[Startpage] Number of gcsa-* container elements shown:', adDivs.length);
 }
